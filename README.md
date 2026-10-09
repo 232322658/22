@@ -52,3 +52,7 @@ npm test       # 服务运行时执行浏览器冒烟测试
 后续修改按用户要求直接交付 HTML、JavaScript 和配置源码到 GitHub，**不要用 GLB 等模型格式代替源码**。运行 `npm run build` 会同步生成 `dist/` 和 `convenience-store.html`；单独更新源码 HTML 可运行 `npm run html`。
 
 GitHub Pages 的分支发布只支持仓库根目录或 `/docs`，不能在设置中直接选择 `dist/`。如要部署 `dist/`，应配置 GitHub Actions 上传该目录；本项目当前未启用 Pages 部署。
+
+## 音乐歌词视频
+
+新增 [Eternity — AiRI · 夏日回忆](video/eternity/README.md)，使用 main 中提供的 MP3 与 LRC 制作完整日中双语歌词视频。成片、字幕、画面和可编辑制作源码位于 `video/eternity/`。

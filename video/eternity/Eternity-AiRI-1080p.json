@@ -1,0 +1,111 @@
+{
+  "title": "Eternity — AiRI / Summer Memories",
+  "duration_seconds": 274.78316666666666,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "lyric_cues": 43,
+  "cuts": [
+    [
+      0,
+      "coast"
+    ],
+    [
+      8.5,
+      "train"
+    ],
+    [
+      23.21,
+      "coast"
+    ],
+    [
+      36.45,
+      "sunflowers"
+    ],
+    [
+      48.46,
+      "window"
+    ],
+    [
+      58.37,
+      "train"
+    ],
+    [
+      70.2,
+      "sunflowers"
+    ],
+    [
+      83.2,
+      "coast"
+    ],
+    [
+      90.77,
+      "train"
+    ],
+    [
+      104,
+      "window"
+    ],
+    [
+      110.81,
+      "window"
+    ],
+    [
+      124.25,
+      "coast"
+    ],
+    [
+      136.24,
+      "train"
+    ],
+    [
+      146.12,
+      "sunflowers"
+    ],
+    [
+      157.9,
+      "sunflowers"
+    ],
+    [
+      171.11,
+      "coast"
+    ],
+    [
+      178.34,
+      "train"
+    ],
+    [
+      190,
+      "window"
+    ],
+    [
+      197.57,
+      "window"
+    ],
+    [
+      210.91,
+      "sunflowers"
+    ],
+    [
+      224.11,
+      "sunset"
+    ],
+    [
+      237.29,
+      "sunset"
+    ],
+    [
+      248.6,
+      "sunset"
+    ],
+    [
+      259.5,
+      "sunset"
+    ]
+  ],
+  "assets": "Original AI-generated backgrounds",
+  "audio_source": "audio.mp3",
+  "lyrics_source": "lyrics.lrc"
+}

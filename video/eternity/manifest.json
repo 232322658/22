@@ -1,0 +1,27 @@
+{
+  "source_repo": "232322658/22",
+  "source_branch": "main",
+  "source_commit": "6f26a3e3db3ff5a4876aeaa75844ecc5965e6043",
+  "inputs": [
+    {
+      "name": "AiRI - Eternity.mp3",
+      "sha256": "17c46966b2f7426c6cd870bbae9083ddd3f48e8974565f78ebf01164d621063e"
+    },
+    {
+      "name": "Eternity - AiRI.lrc",
+      "sha256": "8c1ffe1b70cd935bf771db7e7bb09632bbba92a2bdf6f7387aff2c92e14ecce3"
+    }
+  ],
+  "output": {
+    "name": "Eternity-AiRI-1080p.mp4",
+    "bytes": 64482476,
+    "sha256": "05caf584854256305872f28285661fe2699caeb0e3474d3c9f58b31edc9aff27"
+  },
+  "validation": {
+    "full_decode": "passed",
+    "container_fast_start": true,
+    "subtitle_cues": 43,
+    "glyph_coverage": "passed"
+  },
+  "note": "Original AI-generated illustrations; lyric-film camera motion, not character animation."
+}
