@@ -16,6 +16,8 @@ npm run build  # 生成 dist/
 npm test       # 服务运行时执行浏览器冒烟测试
 ```
 
+`dist/` 中的生成产物（HTML、打包 JS、模型与字体副本）会**直接提交到 GitHub**，不放入 `.gitignore`。以后每次重新制作或修改场景后，运行 `npm run build` 并将 `dist/` 一并提交，仓库里始终保存最新的可用静态版本，可直接下载或用于 GitHub Pages 等静态托管。
+
 ## 观看
 
 - 鼠标左键拖动：旋转；滚轮：缩放；右键拖动：平移。
