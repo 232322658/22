@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/make-html.mjs",
     "test": "node scripts/smoke.mjs",
-    "export:model": "node scripts/export.mjs"
+    "html": "node scripts/make-html.mjs"
   },
   "dependencies": {
     "three": "^0.180.0",

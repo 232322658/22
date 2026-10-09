@@ -8,7 +8,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 // All geometry is built locally. No image services, remote models, or runtime APIs.
-const font = new FontFace('ZenMaru', 'url(/fonts/ZenMaruGothic-Medium.ttf)');
+const font = new FontFace('ZenMaru', `url(${import.meta.env.BASE_URL}fonts/ZenMaruGothic-Medium.ttf)`);
 try { document.fonts.add(await font.load()); } catch { /* System fonts remain usable. */ }
 
 const scene = new THREE.Scene();
@@ -724,7 +724,7 @@ for (let i = 0; i < rainCount; i++) {
 }
 const rainGeo = new THREE.BufferGeometry(); rainGeo.setAttribute('position',new THREE.BufferAttribute(rainPositions,3));rainGeo.setAttribute('color',new THREE.BufferAttribute(rainColors,3));
 const rain = new THREE.LineSegments(rainGeo,new THREE.LineBasicMaterial({color:'#abc5df',vertexColors:true,transparent:true,opacity:.23,depthWrite:false,blending:THREE.AdditiveBlending}));
-rain.frustumCulled=false;scene.add(rain); rain.userData.excludeFromExport = true;
+rain.frustumCulled=false;scene.add(rain);
 
 // Independent falling drops under the awning, and animated rings on the wet street.
 const drips = [];
@@ -765,9 +765,9 @@ const shadowTex = texture((c,w,h)=>{
   const g=c.createRadialGradient(w/2,h/2,w*.12,w/2,h/2,w*.48);g.addColorStop(0,'rgba(0,0,0,.56)');g.addColorStop(.58,'rgba(0,0,0,.28)');g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.fillRect(0,0,w,h);
 },512,512);
 const groundShadow = floorPlane(20,20,0,0,new THREE.MeshBasicMaterial({map:shadowTex,transparent:true,opacity:.65,depthWrite:false}),-.267);
-groundShadow.userData.excludeFromExport = true;
+
 const backdrop = new THREE.Mesh(new THREE.PlaneGeometry(2000,2000),new THREE.MeshBasicMaterial({color:'#18223a',fog:false}));
-backdrop.rotation.x=-Math.PI/2;backdrop.position.y=-.29;backdrop.receiveShadow=false;backdrop.userData.excludeFromExport=true;scene.add(backdrop);
+backdrop.rotation.x=-Math.PI/2;backdrop.position.y=-.29;backdrop.receiveShadow=false;scene.add(backdrop);
 
 // A restrained coral corner lightbox complements the sea-glass shop fascia.
 const cornerLightbox = new THREE.Group(); cornerLightbox.position.set(2.64, 0, -.07); cornerLightbox.rotation.y = Math.PI / 2; scene.add(cornerLightbox);
@@ -786,10 +786,6 @@ panel(.24, .11, 1.85, 2.27, .76, pay);
 // Metal roof seams and water catches remain clean and subtle.
 for (let x = -3.8; x < 2.1; x += .48) box(.014, .007, 4.40, x, 3.906, -1.60, '#586d77', scene, false);
 
-// Procedural weather, additive light pools and viewer backdrop are web-only effects.
-for (const object of [...pools, ...ripples.map(r=>r.mesh), ...drips.map(d=>d.mesh),
-  ...rivulets.flatMap(r=>[r.line,r.bead].filter(Boolean))]) object.userData.excludeFromExport = true;
-
 // Batch the handcrafted static pieces by material. Hundreds of tiny products and
 // wire spokes stay detailed without thousands of per-frame draw calls.
 const dynamic = new Set([
@@ -804,8 +800,8 @@ scene.traverse(object => {
   let ancestor = object;
   while (ancestor) { if (dynamic.has(ancestor)) return; ancestor = ancestor.parent; }
   if (Array.isArray(object.material) || object.isInstancedMesh) return;
-  const key = `${object.userData.excludeFromExport ? "excluded" : "included"}:${object.isMesh ? 'mesh' : 'lines'}:${object.material.uuid}:${object.castShadow}:${object.receiveShadow}`;
-  if (!batches.has(key)) batches.set(key, { material: object.material, mesh: object.isMesh, cast: object.castShadow, receive: object.receiveShadow, exclude: !!object.userData.excludeFromExport, geometries: [] });
+  const key = `${object.isMesh ? 'mesh' : 'lines'}:${object.material.uuid}:${object.castShadow}:${object.receiveShadow}`;
+  if (!batches.has(key)) batches.set(key, { material: object.material, mesh: object.isMesh, cast: object.castShadow, receive: object.receiveShadow, geometries: [] });
   let geometry = object.geometry.clone().applyMatrix4(object.matrixWorld);
   if (geometry.index) geometry = geometry.toNonIndexed();
   if (object.isMesh) {
@@ -820,7 +816,7 @@ for (const batch of batches.values()) {
   const geometry = mergeGeometries(batch.geometries, false);
   if (!geometry) continue;
   const object = batch.mesh ? new THREE.Mesh(geometry, batch.material) : new THREE.LineSegments(geometry, batch.material);
-  object.userData.excludeFromExport = batch.exclude; object.castShadow = batch.cast; object.receiveShadow = batch.receive; scene.add(object);
+  object.castShadow = batch.cast; object.receiveShadow = batch.receive; scene.add(object);
   batch.geometries.forEach(g => g.dispose());
 }
 removable.forEach(object => object.removeFromParent());
@@ -877,10 +873,5 @@ window.addEventListener('resize',resize);
 if(innerWidth/innerHeight<.8){camera.fov=50;camera.updateProjectionMatrix();camera.position.multiplyScalar(1.35);controls.maxDistance=44;controls.update();}
 
 document.addEventListener('visibilitychange',()=>{last=performance.now();});
-// Export is accessible to tooling without adding any on-screen controls.
-window.exportConvenienceStore = async () => {
-  const { exportModel } = await import('./export-model.js');
-  return exportModel(scene);
-};
 // Test and diagnostic readout is not rendered as UI.
 window.__diorama = { scene, camera, controls, renderer, sliding, rain, ripples };

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import zlib from 'node:zlib';
 import { execFileSync } from 'node:child_process';
 import { chromium as playwright } from '@playwright/test';
@@ -23,7 +24,18 @@ try {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
   page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
-  await page.goto(process.env.TEST_URL || 'http://localhost:5173/');
+  if (process.env.SINGLE_HTML) {
+    // CDN traffic is unavailable in the test sandbox. Serve the identical pinned
+    // npm package bytes at the HTML's CDN URLs to test the file:// entry point.
+    const { version } = JSON.parse(fs.readFileSync('node_modules/three/package.json'));
+    await page.route(`https://cdn.jsdelivr.net/npm/three@${version}/**`, async route => {
+      const relative = new URL(route.request().url()).pathname.split(`/three@${version}/`)[1];
+      await route.fulfill({ path: path.resolve('node_modules/three', relative), contentType: 'application/javascript', headers: { 'access-control-allow-origin': '*' } });
+    });
+  }
+  await page.goto(process.env.SINGLE_HTML
+    ? pathToFileURL(path.resolve('convenience-store.html')).href
+    : process.env.TEST_URL || 'http://localhost:5173/');
   await page.waitForFunction(() => window.__diorama, { timeout: 30000 });
   // Keep headless software rendering light; the user-facing renderer is unaffected.
   await page.evaluate(() => {
@@ -52,6 +64,8 @@ try {
   await page.waitForTimeout(250);
   assert.ok(await page.evaluate(() => Math.abs(window.__diorama.camera.aspect - 390/844) < .001), 'resize preserves camera aspect');
   assert.equal(await page.locator('button,input,nav,header').count(), 0, 'no overlay interface');
+  assert.ok(await page.evaluate(() => document.fonts.check('16px ZenMaru')), 'Japanese font loaded');
+  assert.equal(await page.evaluate(() => typeof window.exportConvenienceStore), 'undefined', 'no model export API');
   assert.deepEqual(errors, [], 'no browser or shader errors');
   console.log('PASS: scene loads, shaders compile, drag rotates, wheel zooms, mobile resize works, no UI overlays.');
   console.log('Static geometry is batched; rain vertex count:', initial.rain);

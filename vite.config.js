@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 export default defineConfig({
+  base: './',
   server: { host: '0.0.0.0', allowedHosts: ['.e2b.app'] },
   build: { rollupOptions: { output: { manualChunks: { three: ['three'] } } } },
 });

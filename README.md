@@ -16,7 +16,7 @@ npm run build  # 生成 dist/
 npm test       # 服务运行时执行浏览器冒烟测试
 ```
 
-`dist/` 中的生成产物（HTML、打包 JS、模型与字体副本）会**直接提交到 GitHub**，不放入 `.gitignore`。以后每次重新制作或修改场景后，运行 `npm run build` 并将 `dist/` 一并提交，仓库里始终保存最新的可用静态版本，可直接下载或用于 GitHub Pages 等静态托管。
+`dist/` 中的生成产物（HTML、打包 JS 与字体副本）会**直接提交到 GitHub**，不放入 `.gitignore`。以后每次重新制作或修改场景后，运行 `npm run build` 并将 `dist/` 一并提交，仓库里始终保存最新的可用静态版本，可直接下载或用于 GitHub Pages 等静态托管。
 
 ## 观看
 
@@ -40,19 +40,15 @@ npm test       # 服务运行时执行浏览器冒烟测试
 
 字体：Zen Maru Gothic Medium，SIL Open Font License 1.1；许可证见 `public/fonts/OFL.txt`。
 
-## 下载与模型导出
+## 源码交付（不使用 GLB）
 
-模型下载文件为 `public/models/komorebi-mart.glb`；运行网页服务时可通过 `/models/komorebi-mart.glb` 直接下载，无需从网页里寻找按钮。
+- **`convenience-store.html`**：单文件网页源码，内联未压缩的场景 JavaScript、CSS 和字体。下载后用现代浏览器打开；需要联网从 jsDelivr 加载固定版本的 Three.js。没有 GLB，也没有模型加载器。
+- **`src/main.js`**：便于编辑的场景 JavaScript 原文件。
+- **`index.html`、`vite.config.js`、`package.json`、`package-lock.json`**：完整开发入口和配置。
+- **`dist/`**：构建后的静态网页，用 HTTP 服务托管；静态版本资源全部来自项目，不依赖 CDN。路径支持子目录部署。
 
-GitHub 直链：<https://github.com/232322658/22/raw/refs/heads/arena/e0eb6d0e-22/public/models/komorebi-mart.glb>。
-GLB 为静态三维模型，包含店铺、店内商品、街角设施、轮廓线及内嵌贴图，可导入 Blender 或其他支持 glTF 2.0 的查看器。
+源码入口：<https://github.com/232322658/22/blob/arena/e0eb6d0e-22/convenience-store.html>
 
-网页的三渲二着色器、实时平面反射、降雨与门的程序动画不是通用 glTF 功能，因此模型以标准 PBR 材质导出，实际观感随查看软件与照明变化。要保留完整视觉效果和动效，请运行网页项目。
+后续修改按用户要求直接交付 HTML、JavaScript 和配置源码到 GitHub，**不要用 GLB 等模型格式代替源码**。运行 `npm run build` 会同步生成 `dist/` 和 `convenience-store.html`；单独更新源码 HTML 可运行 `npm run html`。
 
-服务运行时可重新生成模型：
-
-```sh
-npm run export:model
-```
-
-生成文件位于忽略的 `downloads/komorebi-mart.glb`。导出脚本验证 GLB 头、内嵌贴图、GLTFLoader 回读与模型边界；临时导出文件不进入 Git；`public/models/` 内包含已验证的约 5.5 MB 模型，使预览与 GitHub 都可直接提供下载。
+GitHub Pages 的分支发布只支持仓库根目录或 `/docs`，不能在设置中直接选择 `dist/`。如要部署 `dist/`，应配置 GitHub Actions 上传该目录；本项目当前未启用 Pages 部署。
