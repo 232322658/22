@@ -56,3 +56,7 @@ GitHub Pages 的分支发布只支持仓库根目录或 `/docs`，不能在设�
 ## 音乐歌词视频
 
 新增 [Eternity — AiRI · 夏日回忆](video/eternity/README.md)，使用 main 中提供的 MP3 与 LRC 制作完整日中双语歌词视频。成片、字幕、画面和可编辑制作源码位于 `video/eternity/`。
+
+## 实时程序音乐短片
+
+新增 [余烬 — 崔健《寂寞就像一团烈火》](mv/lonely-fire/README.md)。先行背景调研、24 段导演分镜、实时 Canvas 动画、歌词同步与离线单文件 HTML 均在 `mv/lonely-fire/`；不使用预渲染视频或模型文件替代源码。

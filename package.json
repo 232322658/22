@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node scripts/make-html.mjs",
+    "build": "vite build && node scripts/make-html.mjs && node mv/lonely-fire/build.mjs",
     "test": "node scripts/smoke.mjs",
-    "html": "node scripts/make-html.mjs"
+    "html": "node scripts/make-html.mjs",
+    "build:mv": "node mv/lonely-fire/build.mjs",
+    "test:mv": "node scripts/test-fire-mv.mjs"
   },
   "dependencies": {
     "three": "^0.180.0",
