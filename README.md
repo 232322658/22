@@ -40,7 +40,9 @@ npm test       # 服务运行时执行浏览器冒烟测试
 
 ## 下载与模型导出
 
-在 GitHub 的 **Releases** 页面下载 `komorebi-mart.glb`，无需从网页里寻找按钮。
+模型下载文件为 `public/models/komorebi-mart.glb`；运行网页服务时可通过 `/models/komorebi-mart.glb` 直接下载，无需从网页里寻找按钮。
+
+GitHub 直链：<https://github.com/232322658/22/raw/refs/heads/arena/e0eb6d0e-22/public/models/komorebi-mart.glb>。
 GLB 为静态三维模型，包含店铺、店内商品、街角设施、轮廓线及内嵌贴图，可导入 Blender 或其他支持 glTF 2.0 的查看器。
 
 网页的三渲二着色器、实时平面反射、降雨与门的程序动画不是通用 glTF 功能，因此模型以标准 PBR 材质导出，实际观感随查看软件与照明变化。要保留完整视觉效果和动效，请运行网页项目。
@@ -51,4 +53,4 @@ GLB 为静态三维模型，包含店铺、店内商品、街角设施、轮廓�
 npm run export:model
 ```
 
-生成文件位于忽略的 `downloads/komorebi-mart.glb`。导出脚本验证 GLB 头、内嵌贴图、GLTFLoader 回读与模型边界；文件不进入 Git，作为下载附件发布。
+生成文件位于忽略的 `downloads/komorebi-mart.glb`。导出脚本验证 GLB 头、内嵌贴图、GLTFLoader 回读与模型边界；临时导出文件不进入 Git；`public/models/` 内包含已验证的约 5.5 MB 模型，使预览与 GitHub 都可直接提供下载。
