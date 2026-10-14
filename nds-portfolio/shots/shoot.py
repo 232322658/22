@@ -1,0 +1,47 @@
+import asyncio, sys
+from playwright.async_api import async_playwright
+B='http://localhost:3000'
+OUT='/home/user/nds-portfolio/shots/'
+async def main():
+    async with async_playwright() as p:
+        br = await p.chromium.launch()
+        errs=[]
+        pg = await br.new_page(viewport={'width':1280,'height':860})
+        pg.on('response', lambda r: errs.append('404 '+r.url) if r.status==404 else None)
+        pg.on('pageerror', lambda e: errs.append(str(e)))
+        await pg.goto(B); await pg.wait_for_timeout(900)
+        await pg.screenshot(path=OUT+'1_boot.png')
+        await pg.keyboard.press('x'); await pg.wait_for_timeout(400)
+        await pg.screenshot(path=OUT+'2_home.png')
+        await pg.keyboard.press('x'); await pg.wait_for_timeout(300)
+        await pg.keyboard.press('ArrowRight'); await pg.wait_for_timeout(300)
+        await pg.screenshot(path=OUT+'3_works.png')
+        await pg.keyboard.press('x'); await pg.wait_for_timeout(350)
+        await pg.screenshot(path=OUT+'4_lidclosing.png')
+        await pg.wait_for_timeout(1000)
+        await pg.screenshot(path=OUT+'5_detail.png')
+        await pg.keyboard.press('Escape'); await pg.wait_for_timeout(1200)
+        await pg.keyboard.press('z'); await pg.wait_for_timeout(200)
+        await pg.keyboard.press('ArrowDown'); await pg.keyboard.press('x'); await pg.wait_for_timeout(300)
+        await pg.screenshot(path=OUT+'6_about.png')
+        await pg.keyboard.press('z'); await pg.keyboard.press('ArrowDown'); await pg.keyboard.press('ArrowRight'); await pg.keyboard.press('x'); await pg.wait_for_timeout(300)
+        await pg.screenshot(path=OUT+'7_contact.png')
+        print('mode check', await pg.evaluate("document.querySelector('#lcdBot .title-strip')?.textContent"))
+        m = await br.new_page(viewport={'width':390,'height':844}, device_scale_factor=2, is_mobile=True, has_touch=True)
+        m.on('pageerror', lambda e: errs.append('m:'+str(e)))
+        await m.goto(B); await m.wait_for_timeout(600)
+        await m.tap('#lcdBot'); await m.wait_for_timeout(400)
+        await m.screenshot(path=OUT+'8_mobile.png', full_page=True)
+        a = await br.new_page(viewport={'width':1200,'height':860})
+        a.on('pageerror', lambda e: errs.append('a:'+str(e)))
+        await a.goto(B+'/admin'); await a.wait_for_timeout(400)
+        pw=open('/home/user/nds-portfolio/data/INITIAL_ADMIN_PASSWORD.txt').read().split()[1]
+        await a.fill('#loginForm [name=password]', pw); await a.click('#loginForm button'); await a.wait_for_timeout(800)
+        await a.screenshot(path=OUT+'9_admin_list.png')
+        await a.click('[data-op=edit]'); await a.wait_for_timeout(400)
+        await a.screenshot(path=OUT+'10_admin_edit.png', full_page=True)
+        await a.click('[data-tab=profile]'); await a.wait_for_timeout(300)
+        await a.screenshot(path=OUT+'11_admin_profile.png', full_page=True)
+        print('errors:', errs)
+        await br.close()
+asyncio.run(main())

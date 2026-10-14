@@ -1,0 +1,11 @@
+{
+  "name": "nds-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "粉色掌机风格作品集（非官方致敬）",
+  "scripts": {
+    "postinstall": "cd server && npm install --omit=dev",
+    "start": "node server/index.js"
+  },
+  "engines": { "node": ">=18" }
+}

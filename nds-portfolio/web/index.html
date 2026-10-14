@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Portfolio Lite</title>
+<meta name="description" content="一台粉色掌机里的作品集">
+<meta name="theme-color" content="#f7b3c6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ff6f9a' d='M2 3h4v1h1v1h2V4h1V3h4v1h1v5h-1v1h-1v1h-1v1h-1v1h-1v1H8v1H8v-1H7v-1H6v-1H5v-1H4v-1H3V9H2V4h0z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main id="stage" aria-label="Portfolio Lite 掌机">
+  <div id="device">
+    <!-- ============ TOP HALF (lid) ============ -->
+    <section class="half top" id="top">
+      <div class="face front">
+        <svg class="shell" viewBox="0 0 1330 730" aria-hidden="true">
+          <defs>
+            <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffd3df"/><stop offset=".45" stop-color="#f9b2c5"/><stop offset="1" stop-color="#f096b0"/>
+            </linearGradient>
+            <linearGradient id="gFace" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffd9e3"/><stop offset=".5" stop-color="#fbbccd"/><stop offset="1" stop-color="#f5a7bd"/>
+            </linearGradient>
+            <linearGradient id="gGloss" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".35" stop-color="#fff" stop-opacity=".18"/><stop offset=".36" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="gBezel" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2b2630"/><stop offset="1" stop-color="#16131a"/>
+            </linearGradient>
+            <radialGradient id="gHole" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#7a3a50"/><stop offset="1" stop-color="#c06d88"/></radialGradient>
+          </defs>
+          <rect x="0" y="0" width="1330" height="730" rx="72" fill="url(#gBody)"/>
+          <rect x="5" y="5" width="1320" height="720" rx="67" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="4"/>
+          <rect x="24" y="24" width="1282" height="682" rx="52" fill="url(#gFace)" stroke="#e98ea9" stroke-opacity=".5" stroke-width="2"/>
+          <!-- bezel -->
+          <rect x="300" y="80" width="730" height="570" rx="24" fill="#d87d98" opacity=".55"/>
+          <rect x="305" y="85" width="720" height="560" rx="22" fill="url(#gBezel)"/>
+          <rect x="309" y="89" width="712" height="552" rx="19" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+          <rect x="357" y="134" width="616" height="462" fill="#0b0a0d"/>
+          <!-- speakers -->
+          <g fill="url(#gHole)" id="spkL">
+            <circle cx="150" cy="330" r="7"/><circle cx="180" cy="330" r="7"/><circle cx="135" cy="356" r="7"/><circle cx="165" cy="356" r="7"/><circle cx="195" cy="356" r="7"/>
+            <circle cx="150" cy="382" r="7"/><circle cx="180" cy="382" r="7"/><circle cx="135" cy="408" r="7"/><circle cx="165" cy="408" r="7"/><circle cx="195" cy="408" r="7"/>
+            <circle cx="150" cy="434" r="7"/><circle cx="180" cy="434" r="7"/>
+          </g>
+          <use href="#spkL" x="1000"/>
+          <text x="665" y="690" text-anchor="middle" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-size="26" letter-spacing="10" fill="#dc7f9b" opacity=".8">PORTFOLIO&#160;LITE</text>
+          <path d="M40 90 Q40 40 90 40 H560 L380 330 H40 Z" fill="url(#gGloss)" opacity=".55"/>
+        </svg>
+        <div class="screen" id="scrTop"><div class="lcd" id="lcdTop" aria-live="polite"></div><div class="glass"></div></div>
+      </div>
+      <div class="face back" aria-hidden="true">
+        <svg class="shell" viewBox="0 0 1330 730">
+          <defs>
+            <linearGradient id="gLid" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd0dc"/><stop offset=".55" stop-color="#f6a6bc"/><stop offset="1" stop-color="#ec8aa6"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="1330" height="730" rx="72" fill="url(#gLid)"/>
+          <rect x="5" y="5" width="1320" height="720" rx="67" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="5"/>
+          <rect x="470" y="300" width="390" height="130" rx="65" fill="none" stroke="#e17f9d" stroke-width="5" opacity=".8"/>
+          <text id="lidName" x="665" y="383" text-anchor="middle" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-size="56" letter-spacing="12" fill="#e17f9d">MOMO</text>
+          <path d="M60 120 Q60 60 120 60 H760 L520 420 H60Z" fill="#fff" opacity=".22"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============ BOTTOM HALF ============ -->
+    <section class="half bottom" id="bottom">
+      <svg class="shell" viewBox="0 0 1330 800" id="botSvg">
+        <defs>
+          <linearGradient id="gHinge" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e98aa5"/><stop offset=".3" stop-color="#ffd6e1"/><stop offset=".55" stop-color="#f8adc1"/><stop offset="1" stop-color="#d9708f"/>
+          </linearGradient>
+          <linearGradient id="gShoulder" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6a3ba"/><stop offset="1" stop-color="#d9708f"/></linearGradient>
+          <linearGradient id="gPad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b4550"/><stop offset="1" stop-color="#2a262e"/></linearGradient>
+          <radialGradient id="gBtn" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#f7eef1"/><stop offset="1" stop-color="#e6d3da"/></radialGradient>
+          <radialGradient id="gWell" cx=".5" cy=".5" r=".5"><stop offset=".78" stop-color="#e48ea7"/><stop offset="1" stop-color="#f7b8c9"/></radialGradient>
+          <radialGradient id="gLedOn" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#eaffef"/><stop offset=".5" stop-color="#5df08a"/><stop offset="1" stop-color="#2fae5c"/></radialGradient>
+        </defs>
+        <!-- shoulders L / R (sit at the hinge ends, peeking above the body) -->
+        <g class="btn" data-btn="l" role="button" aria-label="L 键：上一页"><path d="M18 120 Q18 14 112 14 H284 Q298 14 298 30 V120 Z" fill="url(#gShoulder)" stroke="#c9607f" stroke-opacity=".45" stroke-width="2"/><path d="M60 30 H270" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/><text x="150" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#c9607f" opacity=".7">L</text></g>
+        <g class="btn" data-btn="r" role="button" aria-label="R 键：下一页"><path d="M1312 120 Q1312 14 1218 14 H1046 Q1032 14 1032 30 V120 Z" fill="url(#gShoulder)" stroke="#c9607f" stroke-opacity=".45" stroke-width="2"/><path d="M1060 30 H1270" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/><text x="1180" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#c9607f" opacity=".7">R</text></g>
+        <!-- hinge -->
+        <rect x="306" y="2" width="718" height="78" rx="20" fill="url(#gHinge)"/>
+        <rect x="306" y="2" width="718" height="78" rx="20" fill="none" stroke="#c4627f" stroke-opacity=".45" stroke-width="2"/>
+        <circle cx="665" cy="41" r="6" fill="#9d4f66"/>
+        <circle id="ledPower" cx="940" cy="41" r="8" fill="url(#gLedOn)"/>
+        <circle id="ledCharge" cx="980" cy="41" r="8" fill="#c26b84"/>
+        <!-- body -->
+        <rect x="0" y="62" width="1330" height="738" rx="72" fill="url(#gBody)"/>
+        <rect x="5" y="67" width="1320" height="728" rx="67" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="4"/>
+        <rect x="24" y="92" width="1282" height="684" rx="52" fill="url(#gFace)" stroke="#e98ea9" stroke-opacity=".5" stroke-width="2"/>
+        <!-- touch screen bezel -->
+        <rect x="300" y="135" width="730" height="570" rx="24" fill="#d87d98" opacity=".55"/>
+        <rect x="305" y="140" width="720" height="560" rx="22" fill="url(#gBezel)"/>
+        <rect x="357" y="189" width="616" height="462" fill="#0b0a0d"/>
+        <!-- D-pad -->
+        <circle cx="170" cy="360" r="132" fill="url(#gWell)"/>
+        <circle cx="170" cy="360" r="132" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/>
+        <g id="dpad">
+          <path d="M132 258 Q132 246 144 246 H196 Q208 246 208 258 V322 H272 Q284 322 284 334 V386 Q284 398 272 398 H208 V462 Q208 474 196 474 H144 Q132 474 132 462 V398 H68 Q56 398 56 386 V334 Q56 322 68 322 H132 Z" fill="url(#gPad)" stroke="#1d1a20" stroke-width="2"/>
+          <path d="M136 252 H204 M62 328 H130" stroke="#fff" stroke-opacity=".18" stroke-width="3"/>
+          <circle cx="170" cy="360" r="20" fill="#2e2a32" stroke="#57505c" stroke-width="2"/>
+          <g fill="#6b6370"><path d="M170 262 l-14 20 h28z"/><path d="M170 458 l-14 -20 h28z"/><path d="M72 360 l20 -14 v28z"/><path d="M268 360 l-20 -14 v28z"/></g>
+        </g>
+        <g class="dhit" data-btn="up" role="button" aria-label="上"><rect x="126" y="240" width="88" height="96" fill="transparent"/></g>
+        <g class="dhit" data-btn="down" role="button" aria-label="下"><rect x="126" y="384" width="88" height="96" fill="transparent"/></g>
+        <g class="dhit" data-btn="left" role="button" aria-label="左"><rect x="50" y="316" width="96" height="88" fill="transparent"/></g>
+        <g class="dhit" data-btn="right" role="button" aria-label="右"><rect x="194" y="316" width="96" height="88" fill="transparent"/></g>
+        <!-- ABXY -->
+        <g font-family="Arial Rounded MT Bold,Arial,sans-serif" font-weight="700" font-size="36" text-anchor="middle">
+          <g class="btn" data-btn="x" role="button" aria-label="X 键"><circle cx="1160" cy="276" r="47" fill="#e48ea7"/><circle cx="1160" cy="276" r="40" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1160" y="289" fill="#a7949b">X</text></g>
+          <g class="btn" data-btn="a" role="button" aria-label="A 键：确定"><circle cx="1244" cy="360" r="47" fill="#e48ea7"/><circle cx="1244" cy="360" r="40" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1244" y="373" fill="#a7949b">A</text></g>
+          <g class="btn" data-btn="b" role="button" aria-label="B 键：返回"><circle cx="1160" cy="444" r="47" fill="#e48ea7"/><circle cx="1160" cy="444" r="40" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1160" y="457" fill="#a7949b">B</text></g>
+          <g class="btn" data-btn="y" role="button" aria-label="Y 键"><circle cx="1076" cy="360" r="47" fill="#e48ea7"/><circle cx="1076" cy="360" r="40" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1076" y="373" fill="#a7949b">Y</text></g>
+        </g>
+        <!-- START / SELECT -->
+        <g font-family="Arial Rounded MT Bold,Arial,sans-serif" font-size="22" letter-spacing="2" fill="#b4587a">
+          <g class="btn" data-btn="start" role="button" aria-label="START：主菜单"><circle cx="1120" cy="566" r="25" fill="#e48ea7"/><circle cx="1120" cy="566" r="20" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1156" y="574">START</text></g>
+          <g class="btn" data-btn="select" role="button" aria-label="SELECT：声音开关"><circle cx="1120" cy="632" r="25" fill="#e48ea7"/><circle cx="1120" cy="632" r="20" fill="url(#gBtn)" stroke="#d6b2be" stroke-width="2"/><text x="1156" y="640">SELECT</text></g>
+        </g>
+        <!-- POWER slider -->
+        <g class="btn" data-btn="power" role="button" aria-label="电源">
+          <rect x="1236" y="118" width="54" height="24" rx="12" fill="#d77894"/>
+          <circle id="powerKnob" cx="1276" cy="130" r="11" fill="url(#gBtn)" stroke="#c9849a" stroke-width="2"/>
+          <text x="1263" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" letter-spacing="2" fill="#c0637f">POWER</text>
+        </g>
+        <path d="M40 160 Q40 110 90 110 H520 L360 330 H40 Z" fill="url(#gGloss)" opacity=".45"/>
+      </svg>
+      <div class="screen" id="scrBot"><div class="lcd" id="lcdBot"></div><div class="glass"></div></div>
+    </section>
+  </div>
+
+  <!-- compact (phone) controls -->
+  <div id="pad" aria-label="按键">
+    <div class="cross"><button data-btn="up" aria-label="上">▲</button><button data-btn="left" aria-label="左">◀</button><button data-btn="right" aria-label="右">▶</button><button data-btn="down" aria-label="下">▼</button></div>
+    <div class="mid"><button data-btn="select" class="pill">SELECT</button><button data-btn="start" class="pill">START</button></div>
+    <div class="ab"><button data-btn="b" aria-label="B 返回">B</button><button data-btn="a" aria-label="A 确定">A</button></div>
+  </div>
+</main>
+
+<!-- detail reading view -->
+<article id="detail" hidden aria-modal="true" role="dialog" aria-labelledby="dTitle">
+  <div class="d-wrap">
+    <button class="d-close" data-close aria-label="返回">B&nbsp; 返回</button>
+    <div id="dBody"></div>
+  </div>
+</article>
+
+<footer id="foot">非官方致敬作品 · 与任天堂无关 · <a href="/admin">管理</a></footer>
+<script src="/app.js"></script>
+</body>
+</html>

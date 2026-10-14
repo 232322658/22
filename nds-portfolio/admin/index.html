@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>后台 · Portfolio Lite</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<!-- login -->
+<section id="login" class="center" hidden>
+  <form class="card login" id="loginForm">
+    <div class="brand"><span class="dot"></span>Portfolio Lite 后台</div>
+    <label>用户名<input name="username" autocomplete="username" required value="admin"></label>
+    <label>密码<input name="password" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">登录</button>
+    <p class="err" id="loginErr" role="alert"></p>
+    <a class="muted small" href="/">← 返回网站</a>
+  </form>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="brand"><span class="dot"></span>Portfolio Lite 后台</div>
+    <nav>
+      <button data-tab="works" class="on">作品</button>
+      <button data-tab="profile">个人资料</button>
+      <button data-tab="account">账号</button>
+    </nav>
+    <div class="right"><a href="/" target="_blank" class="btn ghost sm">查看网站 ↗</a><button class="btn ghost sm" id="logout">退出</button></div>
+  </header>
+
+  <main>
+    <!-- works list -->
+    <section data-pane="works">
+      <div class="row between"><h2>作品 <small class="muted" id="wCount"></small></h2><button class="btn primary" id="newWork">+ 新建作品</button></div>
+      <div id="wList" class="wlist"></div>
+    </section>
+
+    <!-- work editor -->
+    <section data-pane="edit" hidden>
+      <div class="row between"><h2 id="eTitle">编辑作品</h2><button class="btn ghost" id="eCancel">← 返回列表</button></div>
+      <form id="wForm" class="card grid2">
+        <label class="span2">标题 *<input name="title" required maxlength="120"></label>
+        <label>分类<input name="category" maxlength="40" placeholder="品牌 / UI / 插画…"></label>
+        <label>年份<input name="year" maxlength="10" placeholder="2025"></label>
+        <label class="span2">标签（逗号分隔）<input name="tags" placeholder="Branding, Logo"></label>
+        <label class="span2">一句话简介<input name="summary" maxlength="200"></label>
+        <label class="span2">正文（空一行分段）<textarea name="description" rows="8"></textarea></label>
+        <label class="span2">外部链接<input name="link" placeholder="https://"></label>
+        <div class="span2">
+          <div class="lbl">封面（建议 4:3）</div>
+          <div class="cover-box"><div id="coverPrev" class="cover-prev"></div>
+            <div class="col"><label class="btn ghost file">上传封面<input type="file" accept="image/*" id="coverFile" hidden></label><button type="button" class="btn ghost sm" id="coverClear">移除</button><span class="muted small">自动压缩为 WebP，最长边 1600px</span></div></div>
+        </div>
+        <div class="span2">
+          <div class="lbl">详情图（可多张，可拖拽排序）</div>
+          <div id="gal" class="gal"></div>
+          <label class="btn ghost file">+ 添加图片<input type="file" accept="image/*" id="galFile" multiple hidden></label>
+        </div>
+        <label class="check span2"><input type="checkbox" name="published" checked> 发布（取消则仅后台可见）</label>
+        <div class="span2 row end"><span class="muted small" id="eMsg"></span><button class="btn primary" type="submit" id="eSave">保存</button></div>
+      </form>
+    </section>
+
+    <!-- profile -->
+    <section data-pane="profile" hidden>
+      <div class="row between"><h2>个人资料</h2><button class="btn primary" id="pSave">保存资料</button></div>
+      <form id="pForm" class="card grid2">
+        <label>名字<input name="name" maxlength="40"></label>
+        <label>头衔<input name="title" maxlength="80"></label>
+        <label class="span2">一句话标语<input name="tagline" maxlength="120"></label>
+        <label class="span2">自我介绍（空一行分段）<textarea name="bio" rows="7"></textarea></label>
+        <label>邮箱<input name="email" type="email"></label>
+        <label>所在地<input name="location"></label>
+        <label class="span2">技能（逗号分隔）<input name="skills"></label>
+        <div class="span2"><div class="lbl">头像</div><div class="cover-box"><div id="avaPrev" class="cover-prev ava"></div><div class="col"><label class="btn ghost file">上传头像<input type="file" accept="image/*" id="avaFile" hidden></label><button type="button" class="btn ghost sm" id="avaClear">移除</button></div></div></div>
+        <div class="span2"><div class="row between"><div class="lbl">链接</div><button type="button" class="btn ghost sm" id="addLink">+ 链接</button></div><div id="links" class="rows"></div></div>
+        <div class="span2"><div class="row between"><div class="lbl">经历</div><button type="button" class="btn ghost sm" id="addExp">+ 经历</button></div><div id="exps" class="rows"></div></div>
+      </form>
+      <p class="muted small" id="pMsg"></p>
+    </section>
+
+    <!-- account -->
+    <section data-pane="account" hidden>
+      <h2>账号</h2>
+      <form id="pwForm" class="card narrow">
+        <p class="muted">当前用户：<b id="who"></b></p>
+        <label>原密码<input name="old" type="password" autocomplete="current-password" required></label>
+        <label>新密码（至少 8 位）<input name="new" type="password" autocomplete="new-password" minlength="8" required></label>
+        <label>确认新密码<input name="new2" type="password" autocomplete="new-password" minlength="8" required></label>
+        <button class="btn primary">修改密码</button>
+        <p class="small" id="pwMsg" role="alert"></p>
+      </form>
+    </section>
+  </main>
+</div>
+<div id="toast" role="status"></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
